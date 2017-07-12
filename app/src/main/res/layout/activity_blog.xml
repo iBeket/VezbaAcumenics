@@ -26,6 +26,13 @@
         android:layout_marginRight="8dp"
         android:scaleType="centerCrop" />
 
+    <Button
+        android:id="@+id/zoombutton"
+        android:layout_width="70dp"
+        android:layout_height="50dp"
+        android:layout_gravity="right"
+        android:gravity="center"
+        android:text="zoom" />
 
     <TextView
         android:id="@+id/descriptionBlog"
