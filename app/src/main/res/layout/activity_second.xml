@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="10dp"
+        android:weightSum="1">
+
+
+        <ImageView
+
+            android:id="@+id/picture"
+            android:layout_width="fill_parent"
+            android:layout_height="360dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="20dp"
+            android:background="#e6faff"
+            android:gravity="top"
+            android:src="@mipmap/ic_launcher" />
+
+        <TextView
+            android:id="@+id/vaucer"
+            android:layout_width="fill_parent"
+            android:layout_height="40dp"
+            android:layout_below="@id/picture"
+            android:gravity="center"
+            android:text="Voucher Sasa Milosavic has sent you an Accomplishemnt"
+            android:textColor="#000000"
+            android:textSize="18sp"
+            android:layout_marginTop="15dp"/>
+
+        <View
+            android:id="@+id/line"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@+id/vaucer"
+            android:layout_marginTop="10dp"
+            android:background="#000" />
+
+
+        <ImageView
+            android:id="@+id/kruizc"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_below="@+id/line"
+            android:src="@mipmap/kruzic" />
+
+        <View
+            android:id="@+id/linija"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@+id/kruizc"
+            android:layout_marginBottom="10dp"
+            android:background="#000" />
+
+        <TextView
+            android:id="@+id/select"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_below="@+id/line"
+            android:layout_marginLeft="15dp"
+            android:layout_toRightOf="@+id/kruizc"
+            android:gravity="center_vertical"
+            android:text="Select person"
+            android:textSize="25sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/linija"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/accept"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/linija"
+                android:layout_weight="1"
+                android:background="#00ff40"
+                android:text="Accept"
+                android:textAllCaps="false"
+                android:textColor="#ffffff" />
+
+            <Button
+                android:id="@+id/deny"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/linija"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_toRightOf="@+id/accept"
+                android:layout_weight="1"
+                android:background="#ff0000"
+                android:text="Deny"
+                android:textAllCaps="false"
+                android:textColor="#ffffff" />
+
+            <Button
+                android:id="@+id/spam"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/linija"
+                android:layout_toRightOf="@+id/deny"
+                android:layout_weight="1"
+                android:background="#838487"
+                android:text="Spam"
+                android:textAllCaps="false"
+                android:textColor="#ffffff" />
+
+        </LinearLayout>
+
+        <View
+            android:id="@+id/line1"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@+id/linija"
+            android:layout_marginTop="60dp"
+            android:background="#000" />
+
+        <ImageView
+            android:id="@+id/lupa"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignBottom="@+id/picture"
+            android:layout_alignEnd="@+id/picture"
+            android:layout_marginBottom="10dp"
+            android:layout_marginEnd="10dp"
+            android:src="@mipmap/lupa" />
+
+    </RelativeLayout>
+</ScrollView>
