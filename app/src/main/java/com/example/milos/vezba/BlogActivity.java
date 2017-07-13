@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -21,9 +20,7 @@ import android.widget.TextView;
 import com.squareup.picasso.Picasso;
 
 import java.io.ByteArrayOutputStream;
-import java.net.MalformedURLException;
-import java.net.URI;
-import java.net.URL;
+
 
 
 /**
@@ -56,8 +53,6 @@ public class BlogActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
                 startActivityForResult(cameraIntent, CAMERA_REQUEST);
-
-
             }
         });
 
@@ -69,11 +64,11 @@ public class BlogActivity extends AppCompatActivity {
         zoom.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (bmp!=null) {
+                if (bmp != null) {
                     Intent intent = new Intent(Intent.ACTION_VIEW, getImageUri(getApplicationContext(), bmp));
                     startActivity(intent);
-                }else {
-                    Uri uri =  Uri.parse(receivedIntent.getStringExtra("image"));
+                } else {
+                    Uri uri = Uri.parse(receivedIntent.getStringExtra("image"));
                     Intent intent = new Intent(Intent.ACTION_VIEW, uri);
                     startActivity(intent);
                 }
@@ -103,19 +98,20 @@ public class BlogActivity extends AppCompatActivity {
             bmp = (Bitmap) extras.get("data");
             image.setImageBitmap(bmp);
         }
-
     }
+
+    //getting uri from bitmap
     public static Uri getImageUri(Context inContext, Bitmap inImage) {
         ByteArrayOutputStream bytes = new ByteArrayOutputStream();
         inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
         String path = MediaStore.Images.Media.insertImage(inContext.getContentResolver(), inImage, "Title", null);
         return Uri.parse(path);
     }
+
     public void init() {
         title = (TextView) findViewById(R.id.titleBlog);
         description = (TextView) findViewById(R.id.descriptionBlog);
         image = (ImageView) findViewById(R.id.imageViewBlog);
         zoom = (Button) findViewById(R.id.zoombutton);
     }
-
 }

@@ -21,16 +21,32 @@ import java.util.ArrayList;
  */
 
 public class CustomAdapter2 extends ArrayAdapter<JasonModel> {
+    private String letter = "";
+    private ArrayList<JasonModel> obj = new ArrayList<>();
+    private Context context;
+    private int resource;
+
 
     public CustomAdapter2(Context context, int resource, ArrayList<JasonModel> obj) {
         super(context, resource, obj);
+        this.context = context;
+        this.resource = resource;
+        this.obj = obj;
 
     }
+
+    @Override
+    public int getViewTypeCount() {
+        return 2;
+    }
+
 
     /**
      * This method returns the row related view,
      * first, checks if the actual view (convertView) is set
      */
+
+
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         //Initialize the helper class
@@ -43,12 +59,21 @@ public class CustomAdapter2 extends ArrayAdapter<JasonModel> {
         */
         if (convertView == null) {
             LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = inflater.inflate(R.layout.jason_list_item, null);
-            viewHolder = new ViewHolder2();
-            viewHolder.tv = (TextView) convertView.findViewById(R.id.titlejson);
-            viewHolder.tv1 = (TextView) convertView.findViewById(R.id.descriptionjson);
-            viewHolder.im = (ImageView) convertView.findViewById(R.id.imageViewjson);
-            viewHolder.linear = (LinearLayout) convertView.findViewById(R.id.listid) ;
+
+            if (!obj.get(position).getTitle().substring(0, 1).equalsIgnoreCase(letter)) {
+                viewHolder = new ViewHolder2();
+                convertView = inflater.inflate(R.layout.letter_layout, parent, false);
+                viewHolder.letterTv = (TextView) convertView.findViewById(R.id.letterTextView);
+            } else {
+                viewHolder = new ViewHolder2();
+                convertView = inflater.inflate(R.layout.jason_list_item, parent, false);
+                viewHolder.tv = (TextView) convertView.findViewById(R.id.titlejson);
+                viewHolder.tv1 = (TextView) convertView.findViewById(R.id.descriptionjson);
+                viewHolder.im = (ImageView) convertView.findViewById(R.id.imageViewjson);
+                viewHolder.linear = (LinearLayout) convertView.findViewById(R.id.listid);
+                letter = obj.get(position).getTitle().substring(0, 1);
+            }
+
             convertView.setTag(viewHolder);
         }
         /*
@@ -60,27 +85,32 @@ public class CustomAdapter2 extends ArrayAdapter<JasonModel> {
 
         //Populate the row's layout
         final JasonModel obj = getItem(position);
-        viewHolder.tv.setText(obj.getTitle().substring(0,1).toUpperCase()+ obj.getTitle().substring(1));
-        viewHolder.tv1.setText(obj.getDescription().substring(0,1).toUpperCase()+obj.getDescription().substring(1));
-        Picasso.with(getContext())
-                .load(obj.getImageJson().substring(0,4)+"s"+obj.getImageJson().substring(4))
-                .into(viewHolder.im);
+        if (viewHolder.letterTv != null) {
+            viewHolder.letterTv.setText(letter);
+        } else {
+            viewHolder.tv.setText(obj.getTitle().substring(0, 1).toUpperCase() + obj.getTitle().substring(1));
+            viewHolder.tv1.setText(obj.getDescription().substring(0, 1).toUpperCase() + obj.getDescription().substring(1));
+            Picasso.with(getContext())
+                    .load(obj.getImageJson().substring(0, 4) + "s" + obj.getImageJson().substring(4))
+                    .into(viewHolder.im);
 
-         //sending information`s to BlogActivity
-        viewHolder.linear.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getContext(), BlogActivity.class);
-                intent.putExtra("title", obj.getTitle().substring(0,1).toUpperCase()+ obj.getTitle().substring(1));
-                intent.putExtra("description", obj.getDescription().substring(0,1).toUpperCase()+ obj.getDescription().substring(1));
-                intent.putExtra("image",obj.getImageJson().substring(0,4)+"s"+obj.getImageJson().substring(4));
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                getContext().startActivity(intent);
+            //sending information`s to BlogActivity
+            viewHolder.linear.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(getContext(), BlogActivity.class);
+                    intent.putExtra("title", obj.getTitle().substring(0, 1).toUpperCase() + obj.getTitle().substring(1));
+                    intent.putExtra("description", obj.getDescription().substring(0, 1).toUpperCase() + obj.getDescription().substring(1));
+                    intent.putExtra("image", obj.getImageJson().substring(0, 4) + "s" + obj.getImageJson().substring(4));
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    getContext().startActivity(intent);
 
-            }
-        });
-        //starting animation
-        convertView.startAnimation(animation);
+                }
+            });
+            //starting animation
+            // convertView.startAnimation(animation);
+
+        }
 
         return convertView;
     }
@@ -92,6 +122,7 @@ public class CustomAdapter2 extends ArrayAdapter<JasonModel> {
         public TextView tv1;
         public ImageView im;
         public LinearLayout linear;
+        public TextView letterTv;
     }
 }
 
