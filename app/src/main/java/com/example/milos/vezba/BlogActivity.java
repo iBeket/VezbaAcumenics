@@ -22,7 +22,6 @@ import com.squareup.picasso.Picasso;
 import java.io.ByteArrayOutputStream;
 
 
-
 /**
  * Created by Milos on 11-Jul-17.
  */

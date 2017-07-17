@@ -19,6 +19,7 @@ public class SecondActivity extends AppCompatActivity {
     final Context context = this;
     Button button;
     Button button1;
+    Button button2;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,18 +29,18 @@ public class SecondActivity extends AppCompatActivity {
         Intent intent = getIntent();
         if (null != intent) {
 
-                Toast.makeText(SecondActivity.this,
-                        intent.getStringExtra("stringPass"), Toast.LENGTH_LONG).show();
+            Toast.makeText(SecondActivity.this,
+                    intent.getStringExtra("stringPass"), Toast.LENGTH_LONG).show();
             int passInt = intent.getIntExtra("intPass", 0);
             System.out.println(passInt);
-            Boolean clickButton = intent.getBooleanExtra("boolButton",false);
+            Boolean clickButton = intent.getBooleanExtra("boolButton", false);
             System.out.println(clickButton);
         }
 
         button = (Button) findViewById(R.id.spam);
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-               onBackPressed();
+                onBackPressed();
 
             }
         });
@@ -52,7 +53,15 @@ public class SecondActivity extends AppCompatActivity {
 
             }
         });
+        button2 = (Button) findViewById(R.id.deny);
+        button2.setOnClickListener(new View.OnClickListener() {
 
+            @Override
+            public void onClick(View v) {
+                Intent deny = new Intent(SecondActivity.this, FragmentActivity.class);
+                startActivity(deny);
+            }
+        });
 
 
     }

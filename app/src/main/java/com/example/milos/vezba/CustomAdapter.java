@@ -17,17 +17,16 @@ import java.util.ArrayList;
  * Created by Milos on 07-Jul-17.
  */
 
-public class CustomAdapter extends ArrayAdapter <ListModel> {
+public class CustomAdapter extends ArrayAdapter<ListModel> {
 
     public CustomAdapter(Context context, int resource, ArrayList<ListModel> obj) {
-        super(context,resource,obj);
+        super(context, resource, obj);
 
     }
 
     /**
      * This method returns the row related view,
      * first, checks if the actual view (convertView) is set
-     *
      */
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
@@ -38,7 +37,7 @@ public class CustomAdapter extends ArrayAdapter <ListModel> {
           If convertView is not set, inflate the row layout and get its views' references
           then set the helper class as a tag for the convertView
         */
-        if(convertView == null) {
+        if (convertView == null) {
             LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = inflater.inflate(R.layout.list_view_item, null);
             viewHolder = new ViewHolder();
@@ -59,7 +58,6 @@ public class CustomAdapter extends ArrayAdapter <ListModel> {
         Picasso.with(getContext())
                 .load(obj.getImage())
                 .into(viewHolder.im);
-
 
 
         return convertView;

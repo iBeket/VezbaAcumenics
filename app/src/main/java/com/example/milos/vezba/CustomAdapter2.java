@@ -1,7 +1,9 @@
+
 package com.example.milos.vezba;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +18,8 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
+import static android.R.attr.animation;
+
 /**
  * Created by Milos on 10-Jul-17.
  */
@@ -25,6 +29,7 @@ public class CustomAdapter2 extends ArrayAdapter<JasonModel> {
     private ArrayList<JasonModel> obj = new ArrayList<>();
     private Context context;
     private int resource;
+    private LayoutInflater inflater;
 
 
     public CustomAdapter2(Context context, int resource, ArrayList<JasonModel> obj) {
@@ -35,11 +40,21 @@ public class CustomAdapter2 extends ArrayAdapter<JasonModel> {
 
     }
 
+    @Nullable
+    @Override
+    public JasonModel getItem(int position) {
+        return this.obj.get(position);
+    }
+
     @Override
     public int getViewTypeCount() {
         return 2;
     }
 
+    @Override
+    public int getCount() {
+        return super.getCount();
+    }
 
     /**
      * This method returns the row related view,
@@ -57,35 +72,43 @@ public class CustomAdapter2 extends ArrayAdapter<JasonModel> {
           If convertView is not set, inflate the row layout and get its views' references
           then set the helper class as a tag for the convertView
         */
-        if (convertView == null) {
-            LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+           if (convertView == null ) {
 
-            if (!obj.get(position).getTitle().substring(0, 1).equalsIgnoreCase(letter)) {
+
+        if (!obj.get(position).getTitle().substring(0, 1).equalsIgnoreCase(letter)) {
+
+                inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 viewHolder = new ViewHolder2();
-                convertView = inflater.inflate(R.layout.letter_layout, parent, false);
+                convertView = inflater.inflate(R.layout.letter_layout, null);
                 viewHolder.letterTv = (TextView) convertView.findViewById(R.id.letterTextView);
-            } else {
+                letter = obj.get(position).getTitle().substring(0, 1).toUpperCase();
+
+
+        } else {
+
                 viewHolder = new ViewHolder2();
-                convertView = inflater.inflate(R.layout.jason_list_item, parent, false);
+                convertView = inflater.inflate(R.layout.jason_list_item, null);
+                inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 viewHolder.tv = (TextView) convertView.findViewById(R.id.titlejson);
                 viewHolder.tv1 = (TextView) convertView.findViewById(R.id.descriptionjson);
                 viewHolder.im = (ImageView) convertView.findViewById(R.id.imageViewjson);
                 viewHolder.linear = (LinearLayout) convertView.findViewById(R.id.listid);
-                letter = obj.get(position).getTitle().substring(0, 1);
-            }
 
-            convertView.setTag(viewHolder);
-        }
+
+       }
+
+          convertView.setTag(viewHolder);
+         }
         /*
           If convertView already exists, just get the tag and set it in the viewHolder attribute
         */
         else {
-            viewHolder = (CustomAdapter2.ViewHolder2) convertView.getTag();
+           viewHolder = (CustomAdapter2.ViewHolder2) convertView.getTag();
         }
 
         //Populate the row's layout
         final JasonModel obj = getItem(position);
-        if (viewHolder.letterTv != null) {
+        if (viewHolder.letterTv != null ) {
             viewHolder.letterTv.setText(letter);
         } else {
             viewHolder.tv.setText(obj.getTitle().substring(0, 1).toUpperCase() + obj.getTitle().substring(1));
@@ -93,6 +116,7 @@ public class CustomAdapter2 extends ArrayAdapter<JasonModel> {
             Picasso.with(getContext())
                     .load(obj.getImageJson().substring(0, 4) + "s" + obj.getImageJson().substring(4))
                     .into(viewHolder.im);
+
 
             //sending information`s to BlogActivity
             viewHolder.linear.setOnClickListener(new View.OnClickListener() {
@@ -109,7 +133,7 @@ public class CustomAdapter2 extends ArrayAdapter<JasonModel> {
             });
             //starting animation
             // convertView.startAnimation(animation);
-
+             letter = obj.getTitle().substring(0, 1).toUpperCase();
         }
 
         return convertView;
@@ -125,4 +149,3 @@ public class CustomAdapter2 extends ArrayAdapter<JasonModel> {
         public TextView letterTv;
     }
 }
-
