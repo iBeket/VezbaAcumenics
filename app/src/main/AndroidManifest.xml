@@ -29,6 +29,7 @@
         <activity android:name=".ListViewActivity"
             ></activity>
         <activity android:name=".FragmentActivity"
+            android:screenOrientation="portrait"
             ></activity>
         <activity android:name=".JasonActivity">
         </activity>
