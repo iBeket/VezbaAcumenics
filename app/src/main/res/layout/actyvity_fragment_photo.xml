@@ -4,11 +4,20 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="10dp"
-    >
+    android:background="#f58e8e">
+
     <Button
         android:id="@+id/button_fragment_photo"
         android:text="TAKE PHOTO"
         android:layout_gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
+    <ImageView
+        android:id="@+id/picture_fra"
+        android:layout_marginTop="50dp"
+        android:padding="10dp"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_gravity="center"/>
+
 </LinearLayout>

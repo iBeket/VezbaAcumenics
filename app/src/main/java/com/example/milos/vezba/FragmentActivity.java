@@ -1,16 +1,17 @@
 package com.example.milos.vezba;
 
 import android.Manifest;
-import android.app.Fragment;
-import android.content.Intent;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
+import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.os.Bundle;
-import android.provider.MediaStore;
+import android.os.Handler;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
+
 import android.widget.Button;
 
 
@@ -19,16 +20,17 @@ import android.widget.Button;
  */
 
 public class FragmentActivity extends AppCompatActivity {
-    private static final int CAMERA_REQUEST = 1992;
-    private static final int REQUEST_VIDEO_CAPTURE = 1;
-    private Fragment fragment;
+
     private Button photo;
     private Button video;
+
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fragment);
-        init();
+
+        photo = (Button) findViewById(R.id.button_fragment_photo);
+        video = (Button) findViewById(R.id.button_fragment_video);
 
         //permissions for camera
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
@@ -37,27 +39,23 @@ public class FragmentActivity extends AppCompatActivity {
         }
 
         if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-            fragment = new FragmentClass1();
-            photo.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
-                    startActivityForResult(cameraIntent, CAMERA_REQUEST);
-                }
-            });
-            video.setVisibility(View.GONE);
+
+            FragmentManager fragmentManager = getFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+            FragmentClass1 frg1 = new FragmentClass1();
+            fragmentTransaction.replace(R.id.fragment_container, frg1);
+            fragmentTransaction.commit();
+
         } else {
-            fragment = new FragmentClass2();
-            video.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent takeVideoIntent = new Intent(MediaStore.ACTION_VIDEO_CAPTURE);
-                    if (takeVideoIntent.resolveActivity(getPackageManager()) != null) {
-                        startActivityForResult(takeVideoIntent, REQUEST_VIDEO_CAPTURE);
-                    }
-                }
-            });
-            photo.setVisibility(View.GONE);
+
+
+            FragmentManager fragmentManager1 = getFragmentManager();
+            FragmentTransaction fragmentTransaction1 = fragmentManager1.beginTransaction();
+
+            FragmentClass2 frg2 = new FragmentClass2();
+            fragmentTransaction1.replace(R.id.fragment_container, frg2);
+            fragmentTransaction1.commit();
         }
     }
 
@@ -71,9 +69,5 @@ public class FragmentActivity extends AppCompatActivity {
                 video.setEnabled(true);
             }
         }
-    }
-    public void init(){
-        photo = (Button) findViewById(R.id.button_fragment_photo);
-        video = (Button) findViewById(R.id.button_fragment_video);
     }
 }
