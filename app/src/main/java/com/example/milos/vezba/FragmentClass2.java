@@ -1,25 +1,26 @@
 package com.example.milos.vezba;
 
-import android.app.Fragment;
+
+
+
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
-import android.support.v4.content.ContextCompat;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.MediaController;
+
 import android.widget.Toast;
 import android.widget.VideoView;
 
-import static android.R.attr.data;
+
 
 /**
  * Created by Milos on 17-Jul-17.
@@ -33,7 +34,8 @@ public class FragmentClass2 extends Fragment {
     Uri uri;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.activity_fragment_video, container, false);
+        View view = inflater.inflate(R.layout.activity_fragment_video, container, false);
+        return view;
     }
 
     @Override
@@ -61,10 +63,9 @@ public class FragmentClass2 extends Fragment {
                     videoFr.setVideoURI(uri);
                     videoFr.requestFocus();
                     videoFr.start();
-                }else{
+                } else {
                     Toast.makeText(context, "Error", Toast.LENGTH_SHORT).show();
                 }
-
 
                 return false;
             }
@@ -76,7 +77,5 @@ public class FragmentClass2 extends Fragment {
 
         uri = Uri.parse(data.getData().toString());
     }
-
-
 }
 

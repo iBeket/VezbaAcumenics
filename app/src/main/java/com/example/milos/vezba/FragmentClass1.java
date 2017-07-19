@@ -1,10 +1,11 @@
 package com.example.milos.vezba;
 
-import android.app.Fragment;
+
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,8 +25,8 @@ public class FragmentClass1 extends Fragment {
     private Bitmap bmp;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.actyvity_fragment_photo, container, false);
-
+        View view = inflater.inflate(R.layout.actyvity_fragment_photo, container, false);
+        return view;
     }
 
     @Override
@@ -53,5 +54,4 @@ public class FragmentClass1 extends Fragment {
             imageFr.setImageBitmap(bmp);
         }
     }
-
 }
