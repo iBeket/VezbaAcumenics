@@ -5,7 +5,20 @@
     android:orientation="vertical"
     android:padding="10dp"
     android:background="#e6ffff"
-    android:id="@+id/listid">
+    android:id="@+id/listid"
+    >
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:id="@+id/letterTv"
+        android:gravity="center"
+        android:padding="10dp"
+        android:background="#1f4ce1"
+        android:visibility="gone"
+        android:textColor="#fde401"
+        android:textStyle="bold"
+        />
 
     <TextView
         android:id="@+id/titlejson"
@@ -21,22 +34,22 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="left|center">
-    <ImageView
-        android:id="@+id/imageViewjson"
-        android:layout_marginTop="8dp"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_centerVertical="true"
-        android:scaleType="centerCrop"/>
+        <ImageView
+            android:id="@+id/imageViewjson"
+            android:layout_marginTop="8dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_centerVertical="true"
+            android:scaleType="centerCrop"/>
 
-    <TextView
-        android:id="@+id/descriptionjson"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/imageViewjson"
-        android:layout_marginLeft="10dp"
-        android:ellipsize="end"
-        android:maxLines="3"
-        android:textColor="#000" />
+        <TextView
+            android:id="@+id/descriptionjson"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/imageViewjson"
+            android:layout_marginLeft="10dp"
+            android:ellipsize="end"
+            android:maxLines="3"
+            android:textColor="#000" />
     </RelativeLayout>
 </LinearLayout>

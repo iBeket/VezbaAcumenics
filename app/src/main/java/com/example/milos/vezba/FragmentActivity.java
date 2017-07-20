@@ -1,9 +1,6 @@
 package com.example.milos.vezba;
 
 import android.Manifest;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
-import android.content.Context;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
@@ -11,7 +8,6 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 
-import android.view.View;
 import android.widget.Button;
 
 
@@ -35,7 +31,7 @@ public class FragmentActivity extends AppCompatActivity {
         viewPager = (ViewPager) findViewById(R.id.viewPager);
 
         pageAdapter = new PageAdapter(getSupportFragmentManager());
-        viewPager.setPageTransformer(true, new DepthPageTransformer());
+        viewPager.setPageTransformer(false, new DepthPageTransformer());
         viewPager.setAdapter(pageAdapter);
 
         //permissions for camera

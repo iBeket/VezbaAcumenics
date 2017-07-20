@@ -6,8 +6,8 @@ package com.example.milos.vezba;
 
 public class JasonModel {
     private String imageJson;
-    private String description;
-    private String title;
+    public String description;
+    public String title;
 
 
     public String getTitle() {

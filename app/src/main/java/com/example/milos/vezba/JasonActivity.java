@@ -4,8 +4,12 @@ import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
+import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.json.JSONArray;
@@ -23,18 +27,21 @@ import java.util.Comparator;
 
 public class JasonActivity extends AppCompatActivity {
     final String TAG = "JSON";
-    private ProgressDialog Dialog;
+    private ProgressDialog dialog;
     private static String url = "https://raw.githubusercontent.com/danieloskarsson/mobile-coding-exercise/master/items.json";
     private ListView lv;
     ArrayList<JasonModel> list = new ArrayList<>();
     private CustomAdapter2 adapter2;
-
+    private EditText search;
+    private TextView entries;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_jasn);
         lv = (ListView) findViewById(R.id.listjson);
+        search = (EditText)findViewById(R.id.search);
+        entries = (TextView)findViewById(R.id.entries);
         new getData().execute();
     }
 
@@ -42,10 +49,10 @@ public class JasonActivity extends AppCompatActivity {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            Dialog = new ProgressDialog(JasonActivity.this);
-            Dialog.setMessage("Please wait");
-            Dialog.setCancelable(false);
-            Dialog.show();
+            dialog = new ProgressDialog(JasonActivity.this);
+            dialog.setMessage("Please wait");
+            dialog.setCancelable(false);
+            dialog.show();
 
         }
 
@@ -100,9 +107,48 @@ public class JasonActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(Void result) {
             super.onPostExecute(result);
-            if (Dialog.isShowing()) {
-                Dialog.dismiss();
+            if (dialog.isShowing()) {
+                dialog.dismiss();
             }
+            final ArrayList<JasonModel>pomList = new ArrayList<JasonModel>();
+            pomList.addAll(list);
+            entries.setText("Found: "+list.size()+" entries.");
+
+            search.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                    list.clear();
+                    for (JasonModel jasonModel : pomList){
+                        if(jasonModel.getTitle().toString().toLowerCase().contains(s.toString().toLowerCase())){
+                            list.add(jasonModel);
+                            // lv.setAdapter(adapter2);
+                            adapter2.notifyDataSetChanged();
+                        } else {
+                            lv.setAdapter(adapter2);
+                        }
+                    }
+
+                    if (list.size()==0){
+                        entries.setText("Found no entries.");
+                    } else if (list.size()==1){
+                        entries.setText("Found: 1 entry.");
+                    } else {
+                        entries.setText("Found: " + list.size() + " entries.");
+                    }
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+
+                }
+            });
+
             //sorting the list
             Collections.sort(list, new Comparator<JasonModel>() {
                 @Override
