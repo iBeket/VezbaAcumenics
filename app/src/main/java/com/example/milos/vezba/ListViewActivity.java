@@ -56,6 +56,9 @@ public class ListViewActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "par", Toast.LENGTH_SHORT).show();
                     Intent intent1 = new Intent(ListViewActivity.this, JasonActivity.class);
                     startActivity(intent1);
+                }else{
+                    Intent intent2 = new Intent(ListViewActivity.this,MapsActivity.class);
+                    startActivity(intent2);
                 }
             }
         });
