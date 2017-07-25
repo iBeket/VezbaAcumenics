@@ -94,7 +94,6 @@ public class CustomAdapter2 extends ArrayAdapter<JasonModel> {
         }
 
 
-
         //Populate the row's layout
         final JasonModel obj = this.obj.get(position);
         if ((position > 0) && (!obj.title.substring(0, 1).equalsIgnoreCase(this.obj.get(position - 1).getTitle().substring(0, 1)))) {
@@ -153,7 +152,7 @@ public class CustomAdapter2 extends ArrayAdapter<JasonModel> {
     }
 
     private void animateView() {
-        scale = new ScaleAnimation((float)1.0, (float)1.0, (float)0.0, (float)1.0);
+        scale = new ScaleAnimation((float) 1.0, (float) 1.0, (float) 0.0, (float) 1.0);
         scale.setFillAfter(true);
         scale.setDuration(300);
     }

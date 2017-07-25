@@ -38,7 +38,7 @@ public class SglHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-         // Drop older table if existed
+        // Drop older table if existed
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_CONTACTS);
         // Create tables again
         onCreate(db);
@@ -70,11 +70,11 @@ public class SglHelper extends SQLiteOpenHelper {
         if (cursor.moveToFirst()) {
             do {
                 PhoneBook contactPhone = new PhoneBook();
-               // contactPhone.setID(Integer.parseInt(cursor.getString(0)));
+                // contactPhone.setID(Integer.parseInt(cursor.getString(0)));
                 contactPhone.setName(cursor.getString(0));
                 contactPhone.setPhoneNumber(cursor.getString(1));
 
-                String name = cursor.getString(0) +"\n"+ cursor.getString(1);
+                String name = cursor.getString(0) + "\n" + cursor.getString(1);
                 SqlActivity.ArrayofName.add(name);
                 // Adding contact to list
                 contactList.add(contactPhone);

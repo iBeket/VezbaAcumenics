@@ -40,8 +40,8 @@ public class JasonActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_jasn);
         lv = (ListView) findViewById(R.id.listjson);
-        search = (EditText)findViewById(R.id.search);
-        entries = (TextView)findViewById(R.id.entries);
+        search = (EditText) findViewById(R.id.search);
+        entries = (TextView) findViewById(R.id.entries);
         new getData().execute();
     }
 
@@ -110,9 +110,9 @@ public class JasonActivity extends AppCompatActivity {
             if (dialog.isShowing()) {
                 dialog.dismiss();
             }
-            final ArrayList<JasonModel>pomList = new ArrayList<JasonModel>();
+            final ArrayList<JasonModel> pomList = new ArrayList<JasonModel>();
             pomList.addAll(list);
-            entries.setText("Found: "+list.size()+" entries.");
+            entries.setText("Found: " + list.size() + " entries.");
 
             search.addTextChangedListener(new TextWatcher() {
                 @Override
@@ -124,8 +124,8 @@ public class JasonActivity extends AppCompatActivity {
                 public void onTextChanged(CharSequence s, int start, int before, int count) {
 
                     list.clear();
-                    for (JasonModel jasonModel : pomList){
-                        if(jasonModel.getTitle().toString().toLowerCase().contains(s.toString().toLowerCase())){
+                    for (JasonModel jasonModel : pomList) {
+                        if (jasonModel.getTitle().toString().toLowerCase().contains(s.toString().toLowerCase())) {
                             list.add(jasonModel);
                             // lv.setAdapter(adapter2);
                             adapter2.notifyDataSetChanged();
@@ -134,9 +134,9 @@ public class JasonActivity extends AppCompatActivity {
                         }
                     }
 
-                    if (list.size()==0){
+                    if (list.size() == 0) {
                         entries.setText("Found no entries.");
-                    } else if (list.size()==1){
+                    } else if (list.size() == 1) {
                         entries.setText("Found: 1 entry.");
                     } else {
                         entries.setText("Found: " + list.size() + " entries.");

@@ -21,7 +21,7 @@ public class SecondActivity extends AppCompatActivity {
     Button button;
     Button button1;
     Button button2;
-    ImageView imageView;
+    ImageView kruzic, tofej;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,12 +65,21 @@ public class SecondActivity extends AppCompatActivity {
             }
         });
 
-        imageView = (ImageView) findViewById(R.id.kruizc);
-        imageView.setOnClickListener(new View.OnClickListener() {
+        kruzic = (ImageView) findViewById(R.id.kruizc);
+        kruzic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent kruzic = new Intent(SecondActivity.this, SqlActivity.class);
                 startActivity(kruzic);
+            }
+        });
+
+        tofej = (ImageView) findViewById(R.id.picture);
+        tofej.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent trf = new Intent(SecondActivity.this, SharedPreferenceActivity.class);
+                startActivity(trf);
             }
         });
 

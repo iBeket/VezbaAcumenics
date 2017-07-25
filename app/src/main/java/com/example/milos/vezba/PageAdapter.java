@@ -9,12 +9,13 @@ import android.support.v4.app.FragmentPagerAdapter;
  */
 
 public class PageAdapter extends FragmentPagerAdapter {
-    private String[] titles= new String[]{"Take Photo", "Shoot Video"};
+    private String[] titles = new String[]{"Take Photo", "Shoot Video"};
 
-    public PageAdapter(FragmentManager fm ){
+    public PageAdapter(FragmentManager fm) {
         super(fm);
 
     }
+
     @Override
     public Fragment getItem(int position) {
         switch (position) {
@@ -31,9 +32,10 @@ public class PageAdapter extends FragmentPagerAdapter {
     public int getCount() {
         return 2;
     }
+
     // Returns the page title for the top indicator
     @Override
     public CharSequence getPageTitle(int position) {
-        return  titles[position];
+        return titles[position];
     }
 }

@@ -1,17 +1,17 @@
 package com.example.milos.vezba;
 
-        import android.os.Bundle;
-        import android.support.v7.app.AppCompatActivity;
-        import android.util.Log;
-        import android.view.View;
-        import android.widget.AdapterView;
-        import android.widget.ArrayAdapter;
-        import android.widget.GridView;
-        import android.widget.TextView;
-        import android.widget.Toast;
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.GridView;
+import android.widget.TextView;
+import android.widget.Toast;
 
-        import java.util.ArrayList;
-        import java.util.List;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Milos on 25-Jul-17.
@@ -21,6 +21,7 @@ public class SqlActivity extends AppCompatActivity {
     private SglHelper sglHelper;
     private GridView gridView;
     public static ArrayList<String> ArrayofName = new ArrayList<String>();
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,7 +36,7 @@ public class SqlActivity extends AppCompatActivity {
         List<PhoneBook> contacts = sglHelper.getAllContacts();
 
         for (PhoneBook cn : contacts) {
-            String log =" ,Name: " + cn.getName() + " ,Phone: " + cn.getPhoneNumber();
+            String log = " ,Name: " + cn.getName() + " ,Phone: " + cn.getPhoneNumber();
             // Writing Contacts to log
             Log.d("Name: ", log);
 
