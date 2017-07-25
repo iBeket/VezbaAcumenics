@@ -8,6 +8,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 
@@ -20,13 +21,14 @@ public class SecondActivity extends AppCompatActivity {
     Button button;
     Button button1;
     Button button2;
+    ImageView imageView;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_second);
 
 
-        Intent intent = getIntent();
+        final Intent intent = getIntent();
         if (null != intent) {
 
             Toast.makeText(SecondActivity.this,
@@ -63,6 +65,14 @@ public class SecondActivity extends AppCompatActivity {
             }
         });
 
+        imageView = (ImageView) findViewById(R.id.kruizc);
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent kruzic = new Intent(SecondActivity.this, SqlActivity.class);
+                startActivity(kruzic);
+            }
+        });
 
     }
 
@@ -89,46 +99,4 @@ public class SecondActivity extends AppCompatActivity {
         alertDialog.show();
 
     }
-/*
-    @Override
-    public void onStart() {
-        super.onStart();
-        Toast.makeText(SecondActivity.this,
-                "OnStart", Toast.LENGTH_LONG).show();
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        Toast.makeText(SecondActivity.this,
-                "onResume", Toast.LENGTH_LONG).show();
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        Toast.makeText(SecondActivity.this,
-                "onPause", Toast.LENGTH_LONG).show();
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-        Toast.makeText(SecondActivity.this,
-                "onStop", Toast.LENGTH_LONG).show();
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        Toast.makeText(SecondActivity.this,
-                "onDestroy", Toast.LENGTH_LONG).show();
-    }
-
-    @Override
-    protected void onRestart() {
-        super.onRestart();
-        Toast.makeText(SecondActivity.this,
-                "onRestart", Toast.LENGTH_LONG).show();
-    }*/
 }

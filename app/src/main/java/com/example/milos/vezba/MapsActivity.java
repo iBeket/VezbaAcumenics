@@ -77,7 +77,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         if (location != null) {
                             double latitude = location.getLatitude();
                             double longitude = location.getLongitude();
-                            CameraPosition cameraPosition = new CameraPosition.Builder().target(new LatLng(latitude, longitude)).zoom(18).build();
+                            CameraPosition cameraPosition = new CameraPosition.Builder().target(new LatLng(latitude, longitude)).zoom(12).build();
                             gmap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
                         } else {
                             Toast.makeText(MapsActivity.this, "Please turn location on", Toast.LENGTH_SHORT).show();
